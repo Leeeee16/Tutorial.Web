@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tutorial.Web.Models;
 using Tutorial.Web.Services;
@@ -45,12 +46,14 @@ namespace Tutorial.Web.Controllers
             return View(student);
         }
 
+        [Authorize] //只有登陆用户才能创建
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        [Authorize] //只有登陆用户才能创建
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(StudentCreateViewModel student)

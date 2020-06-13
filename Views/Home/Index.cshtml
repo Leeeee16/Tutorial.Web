@@ -1,28 +1,16 @@
-﻿@model Tutorial.Web.ViewModels.HomeIndexViewModel
+﻿@model HomeIndexViewModel
 @{
-    Layout = null;
+    ViewBag.Title = "Home Index";
 }
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Hello From Index.cshtml</title>
-</head>
-<body>
-    <h1>Students</h1>
-    <ul>
 
-        @foreach (var s in Model.Students)
-        {
-            <li>
-                @s.Name (@s.Age)
-                <a asp-action="Detail" asp-route-id="@s.Id">明细 Tag</a>
-            </li>
-        }
-    </ul>
+<partial name="_StudentTable" for="@Model.Students" />
+
+@section bottom
+{
     <div>
-        <a asp-action="Create">添加一个学生</a>
+        <a asp-controller="Home" asp-action="Create" >添加一个学生</a>
     </div>
-</body>
-</html>
+}
+
+@await Component.InvokeAsync("Welcome")
